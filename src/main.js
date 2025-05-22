@@ -1,7 +1,8 @@
 import './style.css'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 // enc credentials
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
@@ -23,6 +24,19 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 //submit button
 
+// Alert config
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
 const form = document.querySelector("form");
 if (form) {
   form.addEventListener("submit", function (event) {
@@ -36,13 +50,19 @@ if (form) {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        alert("Creating Account...");
+        Toast.fire({
+          icon: "success",
+          title: "Creating account"
+        });
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Toast.fire({
+          icon: "error",
+          title: errorMessage
+        });
         // ..
       });
   });
@@ -90,12 +110,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = passwordField.value;
 
     if (!name || !email || !password) {
-      alert("გთხოვ შეავსე ყველა ველი");
+      Toast.fire({
+        icon: "warning",
+        title: "გთხოვ შეავსე ყველა ველი"
+      });
       return;
     }
 
     localStorage.setItem("user", JSON.stringify({ name, email, password }));
-    alert("რეგისტრაცია წარმატებით დასრულდა!");
+    Toast.fire({
+      icon: "success",
+      title: "რეგისტრაცია წარმატებით დასრულდა!"
+    });
   };
 
   // Sign In ღილაკზე რეგისტრირებული მონაცემების შემოწმება
@@ -112,9 +138,15 @@ document.addEventListener("DOMContentLoaded", function () {
       savedUser.email === email &&
       savedUser.password === password
     ) {
-      alert(`მოგესალმები, ${savedUser.name}!`);
+      Toast.fire({
+        icon: "success",
+        title: `მოგესალმები, ${savedUser.name}!`
+      });
     } else {
-      alert("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია");
+      Toast.fire({
+        icon: "error",
+        title: "მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია"
+      });
     }
   });
 });
