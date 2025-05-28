@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Firebase App</title>
+
+  <!-- Firebase App SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+
+  <!-- Firebase Analytics SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics-compat.js"></script>
+</head>
+<body>
+  <h1>Welcome to Firebase Web App</h1>
+
+  <script src="./script.js">
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwonloiD7vHsXq-g19oG1kfPhwbKXiy-Y",
+      authDomain: "fir-8eb6e.firebaseapp.com",
+      projectId: "fir-8eb6e",
+      storageBucket: "fir-8eb6e.appspot.com",
+      messagingSenderId: "645750254318",
+      appId: "1:645750254318:web:f16562d257006c6d3761ff",
+      measurementId: "G-KHJ914YPD1"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+</body>
+</html>

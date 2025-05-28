@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../chatgpt"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "new-register"
+	}
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="About.css">
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+            publicKey: "fUT7XdnlSnzPAwlTQ",
+          });
+      })();
+    </script>
+    <script src="script.js"></script>
+</head>
+<body>
+  <div class="background-example">
+  <div class="container">
+    <form>
+      <h3>GET IN TOUCH</h3>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="phone" placeholder="Phone no" required>
+      <textarea id="message" rows="4" placeholder="How We Can Help You?"></textarea>
+      <button type="submit" onclick="sendMail()">Send</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
