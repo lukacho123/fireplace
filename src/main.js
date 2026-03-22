@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
       account.innerText = user.displayName;
     } else {
       if (window.location.pathname !== '/') {
-        window.location = '/';
+        window.location = '/fireplace/';
       }
     }
   })
