@@ -139,16 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      if (window.location.pathname !== "/fireplace/basket.html"
-        window.location = '/fireplace/basket.html';
-      }
-
       const account = document.querySelector('#account');
-      account.innerText = user.displayName;
-    } else {
-      
-        
-      }
+      if (account) account.innerText = user.displayName;
     }
   })
 
