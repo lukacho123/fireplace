@@ -146,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const account = document.querySelector('#account');
       account.innerText = user.displayName;
     } else {
-      if (window.location.pathname !== '/fireplace/') {
-        window.location = '/fireplace/';
+      
+        
       }
     }
   })
