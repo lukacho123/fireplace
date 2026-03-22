@@ -9,3 +9,6 @@ function sendMail(){
     emailjs.send("service_32twcmx","template_8aevcko",parms).then(alert("Email Sent!!"))
 
 }
+document.getElementById('signupBtn').addEventListener('click', function() {
+    window.location.href = 'basket.html';
+});
