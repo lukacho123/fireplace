@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .then(res => {
             if (res?.user) {
               // localStorage.setItem("user", JSON.stringify({ name: res?.user?.displayName, email, password }));
-              window.location = '/basket.html'
+              window.location = '/fireplace/basket.html'
             };
           })
           .catch(error => {
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     signInWithEmailAndPassword(auth, savedUser?.email, savedUser?.password)
       .then(res => {
-        if (res?.user) window.location = '/basket.html';
+        if (res?.user) window.location = '/fireplace/basket.html';
       })
       .catch(error => {
         console.log(error);
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       if (window.location.pathname !== '/basket.html') {
-        window.location = '/basket.html';
+        window.location = '/fireplace/basket.html';
       }
 
       const account = document.querySelector('#account');
