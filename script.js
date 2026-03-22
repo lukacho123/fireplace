@@ -10,5 +10,5 @@ function sendMail(){
 
 }
 document.getElementById('signupBtn').addEventListener('click', function() {
-    window.location.href = 'basket.html';
+    window.location.href = '/fireplace/basket.html';
 });
