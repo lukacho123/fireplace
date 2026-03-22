@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   icon: "success",
                   title: "Creating account"
                 });
-                window.location = "basket.html";
+                window.location = "/fireplace/basket.html";
               }
             }).catch(error => {
               Toast.fire({
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      if (window.location.pathname !== '/basket.html') {
+      if (window.location.pathname !== "/fireplace/basket.html"
         window.location = '/fireplace/basket.html';
       }
 
