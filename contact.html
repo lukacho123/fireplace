@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Fireplace</title>
+    <link rel="stylesheet" href="basketstyle.css">
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="photoebi_buxari/buxrisfotoJ.webp" width="100px" alt="Fireplace Logo">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="basket.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="./AboutUsPage.html">About</a></li>
+                    <li><a href="contact.html" style="color:#ff523b;font-weight:600;">Contact</a></li>
+                    <li><a href="#!" id="account"></a></li>
+                    <li><a href="#!" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+            <img src="images/cart.png" width="30px" height="30px" alt="cart">
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" alt="menu">
+        </div>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="contact-hero">
+    <h1>🔥 დაგვიკავშირდი / Contact Us</h1>
+    <p>გვიპასუხეთ ნებისმიერ კითხვაზე · We're here to help you</p>
+</div>
+
+<!-- CONTENT -->
+<div class="contact-section">
+
+    <div class="contact-info">
+        <h2>საკონტაქტო ინფო / Info</h2>
+
+        <div class="contact-info-item">
+            <div class="icon">📍</div>
+            <div>
+                <h4>მისამართი / Address</h4>
+                <p>თბილისი, საქართველო / Tbilisi, Georgia</p>
+            </div>
+        </div>
+        <div class="contact-info-item">
+            <div class="icon">📞</div>
+            <div>
+                <h4>ტელეფონი / Phone</h4>
+                <p>+995 555 123 456</p>
+            </div>
+        </div>
+        <div class="contact-info-item">
+            <div class="icon">📧</div>
+            <div>
+                <h4>ელ-ფოსტა / Email</h4>
+                <p>info@fireplace.ge</p>
+            </div>
+        </div>
+        <div class="contact-info-item">
+            <div class="icon">🕐</div>
+            <div>
+                <h4>სამუშაო საათები / Hours</h4>
+                <p>ორშ–პარ / Mon–Fri: 10:00 – 19:00</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form-box">
+        <h2>შეტყობინება / Send a Message</h2>
+        <input type="text"  id="cname"  placeholder="სახელი / Name">
+        <input type="email" id="cemail" placeholder="ელ-ფოსტა / Email">
+        <textarea id="cmsg" placeholder="შეტყობინება / Message..."></textarea>
+        <button class="submit-btn" onclick="submitContactForm()">გაგზავნა / Send →</button>
+        <div class="form-success" id="formSuccess">
+            ✅ გმადლობთ! მალე დაგიკავშირდებით. / Thank you! We'll be in touch soon.
+        </div>
+    </div>
+
+</div>
+
+<!-- CHAT BUBBLE -->
+<div class="chat-bubble" onclick="toggleChat()">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    <span class="ai-badge">AI</span>
+</div>
+
+<!-- CHAT WINDOW -->
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <div class="chat-header-icon">🔥</div>
+        <div class="chat-header-info">
+            <h4>Fireplace AI Assistant</h4>
+            <span>Online · ქართული / English</span>
+        </div>
+        <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg bot">
+            <div class="chat-msg-avatar">🔥</div>
+            <div class="chat-msg-bubble">
+                გამარჯობა! 👋 მე ვარ Fireplace-ის AI დამხმარე.<br>
+                Hello! I'm the Fireplace AI assistant.<br><br>
+                დამისვი კითხვა ქართულად ან ინგლისურად!<br>
+                Ask me anything in Georgian or English!
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-suggestions" id="chatSuggestions">
+        <button class="chat-sug-btn" onclick="quickAsk(this)">რა ბუხრები გაქვთ?</button>
+        <button class="chat-sug-btn" onclick="quickAsk(this)">What fireplaces do you have?</button>
+        <button class="chat-sug-btn" onclick="quickAsk(this)">ფასები / Prices?</button>
+        <button class="chat-sug-btn" onclick="quickAsk(this)">Delivery?</button>
+    </div>
+
+    <div class="chat-input-row">
+        <textarea id="chatInput" placeholder="კითხვა... / Ask anything..." rows="1"></textarea>
+        <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+    </div>
+</div>
+
+<script src="contact.js"></script>
+</body>
+</html>

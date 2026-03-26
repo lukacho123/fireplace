@@ -263,6 +263,7 @@ ul{
         width: 100%;
         overflow: hidden;
         transition: max-height 0.5s;
+        max-height: 0px;
 
     }
     nav ul li{

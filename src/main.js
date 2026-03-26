@@ -1,7 +1,7 @@
 import './style.css'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut, sendEmailVerification } from "firebase/auth";
 import Swal from 'sweetalert2'
 
 // enc credentials
@@ -66,14 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
           if (res?.user) {
             // localStorage.setItem("user", JSON.stringify({ name, email, password }));
 
-            updateProfile(res?.user, {displayName: name}).then(updateRes => {
-              if (updateRes.displayName) {
-                Toast.fire({
-                  icon: "success",
-                  title: "Creating account"
-                });
-                window.location = "/fireplace/basket.html";
-              }
+            sendEmailVerification(res?.user);
+            updateProfile(res?.user, {displayName: name}).then(() => {
+                Toast.fire({ icon: "success", title: "✅ გაიარე ვერიფიკაცია მაილზე და შემდეგ შედი!" });
             }).catch(error => {
               Toast.fire({
                 icon: "error",
@@ -91,9 +86,15 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         signInWithEmailAndPassword(auth, email, password)
           .then(res => {
-            if (res?.user) {
+          if (res?.user) {
+              res.user.reload().then(() => {
+                if (!res.user.emailVerified) {
+                  Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
+                  return;
+                }
+                window.location = '/basket.html';
+              });
               // localStorage.setItem("user", JSON.stringify({ name: res?.user?.displayName, email, password }));
-              window.location = '/fireplace/basket.html'
             };
           })
           .catch(error => {
@@ -118,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     signInWithEmailAndPassword(auth, savedUser?.email, savedUser?.password)
       .then(res => {
-        if (res?.user) window.location = '/fireplace/basket.html';
+        if (res?.user) window.location = '/basket.html';
       })
       .catch(error => {
         console.log(error);
@@ -139,8 +140,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const account = document.querySelector('#account');
-      if (account) account.innerText = user.displayName;
+      user.reload().then(() => {
+        const freshUser = auth.currentUser;
+        if (freshUser && freshUser.emailVerified) {
+          if (window.location.pathname !== '/basket.html') {
+            window.location = '/basket.html';
+          }
+          const account = document.querySelector('#account');
+          if (account) account.innerText = freshUser.displayName || '';
+        }
+      });
+    } else {
+      if (window.location.pathname !== '/') {
+        window.location = '/';
+      }
     }
   })
 
