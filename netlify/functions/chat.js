@@ -4,21 +4,23 @@ exports.handler = async function(event) {
   }
 
   try {
-    const { message } = JSON.parse(event.body);
+    const { messages, systemPrompt } = JSON.parse(event.body);
+
+    const allMessages = systemPrompt
+      ? [{ role: "system", content: systemPrompt }, ...messages]
+      : messages;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "https://peaceful-gingersnap-410c29.netlify.app",
+        "HTTP-Referer": "https://fireplaceluka.netlify.app",
         "X-Title": "Fireplace Assistant"
       },
       body: JSON.stringify({
         model: "google/gemma-3n-e4b-it:free",
-        messages: [
-          { role: "user", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად. კითხვა: " + message }
-        ]
+        messages: allMessages
       })
     });
 
