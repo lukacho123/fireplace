@@ -87,7 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
         signInWithEmailAndPassword(auth, email, password)
           .then(async res => {
           if (res?.user) {
-            await res.user.getIdToken(true);
+            
+              await res.user.reload();
+              await new Promise(resolve => setTimeout(resolve, 1000));
               await res.user.reload();
             if (!auth.currentUser.emailVerified) {
               Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
