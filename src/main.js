@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
       user.reload().then(() => {
         const freshUser = auth.currentUser;
         if (freshUser && freshUser.emailVerified) {
-          const allowedPages = ['/basket.html', '/product.html', '/account.html', '/AboutUsPage.html', '/cart.html', '/contact.html', '/product', '/contact', '/account', '/about', '/basket'];
+          const allowedPages = ['/basket.html', '/product.html', '/account.html', '/AboutUsPage.html', '/cart.html', '/contact.html', '/product', '/contact', '/account', '/about', '/basket', '/verify.html'];
           if (!allowedPages.includes(window.location.pathname)) {
             window.location = '/basket.html';
           }
