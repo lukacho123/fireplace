@@ -28,18 +28,17 @@ async function sendMessage() {
     });
     const data = await res.json();
     document.getElementById('typing')?.remove();
-    const reply = data.reply || data.error || JSON.stringify(data);
     messages.innerHTML += `
       <div class="message bot">
         <div class="avatar">🔥</div>
-        <div class="bubble">${reply}</div>
+        <div class="bubble">${data.reply}</div>
       </div>`;
   } catch (e) {
     document.getElementById('typing')?.remove();
     messages.innerHTML += `
       <div class="message bot">
         <div class="avatar">🔥</div>
-        <div class="bubble">შეცდომა: ${e.message}</div>
+        <div class="bubble">შეცდომა მოხდა, სცადე ხელახლა.</div>
       </div>`;
   }
   btn.disabled = false;
