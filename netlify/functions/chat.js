@@ -19,7 +19,7 @@ exports.handler = async function(event) {
         messages: [
           {
             role: "system",
-            content: "შენ ხარ Fireplace-ის მომხმარებელთა მხარდაჭერის ასისტენტი. პასუხობ ქართულად. ეხმარები მომხმარებლებს ბუხრებთან, გათბობასთან და სახლის კომფორტთან დაკავშირებულ კითხვებზე."
+            content: "შენ ხარ Fireplace-ის მომხმარებელთა მხარდაჭერის ასისტენტი. პასუხობ ქართულად."
           },
           {
             role: "user",
@@ -30,7 +30,7 @@ exports.handler = async function(event) {
     });
 
     const data = await response.json();
-    const reply = data.choices[0].message.content;
+    const reply = data?.choices?.[0]?.message?.content || JSON.stringify(data);
 
     return {
       statusCode: 200,
