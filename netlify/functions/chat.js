@@ -15,7 +15,7 @@ exports.handler = async function(event) {
         "X-Title": "Fireplace Assistant"
       },
       body: JSON.stringify({
-        model: "liquid/lfm-2.5-1.2b-instruct:free",
+        model: "nousresearch/hermes-3-llama-3.1-405b:free",
         messages: [
           { role: "system", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად." },
           { role: "user", content: message }
