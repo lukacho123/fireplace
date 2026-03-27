@@ -15,7 +15,7 @@ exports.handler = async function(event) {
         "X-Title": "Fireplace Assistant"
       },
       body: JSON.stringify({
-        model: "google/gemma-3-1b-it:free",
+        model: "mistralai/mistral-7b-instruct:free",
         messages: [
           { role: "system", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად." },
           { role: "user", content: message }
