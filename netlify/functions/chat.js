@@ -24,7 +24,7 @@ exports.handler = async function(event) {
     });
 
     const data = await response.json();
-    const reply = data?.choices?.[0]?.message?.content || "პასუხი ვერ მივიღე";
+    const reply = JSON.stringify(data);
 
     return {
       statusCode: 200,
