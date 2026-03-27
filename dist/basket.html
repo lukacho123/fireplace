@@ -4,374 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ბუხარების საუკეთესო ვერსია</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
   <script type="module" crossorigin src="/assets/main-Gu2JonX-.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main-CqyErGo3.css">
-  <link rel="stylesheet" crossorigin href="/assets/basketstyle-G9W3yTLx.css">
+  <link rel="stylesheet" crossorigin href="/assets/basket-DvF7LjMf.css">
 </head>
 <body>
 
-<div class="header">
+<canvas id="starsCanvas"></canvas>
 
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">
-                <img src="photoebi_buxari/buxrisfotoJ.webp" width="100px">
-            </div>
-            <nav>
-                <ul id="MenuItems">
-                    <li><a href="basket.html">Home</a></li>
-                    <li><a href="product.html">Products</a></li>
-                    <li><a href="./AboutUsPage.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="/account.html" id="account">ანგარიში</a></li>
-                    <li><a href="#!" id="logout-btn">Logout</a></li>
-                </ul>
-            </nav>
-            <img src="data:image/png;base64,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" width="30px" height="30px">
-            <img src="data:image/png;base64,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" class="menu-icon" 
-            onclick="menutoggle()">
-            </div>
-        <div class="row">
-            <div class="col-2">
-                <h1>შენი სახლის თბილი გარემო<br><h2>A New Style For Your Home!</h2></h1>
-                
-                <a href="" class="btn">Explore Now &#8594;</a>
-            </div>
-            <div class="col-2">
-                <img src="photoebi_buxari/homemain-removebg-preview.png">
-            </div>
+<div class="page-content">
 
+    <!-- NAVBAR -->
+    <div class="navbar-wrap">
+        <div class="logo"><img src="photoebi_buxari/buxrisfotoJ.webp" width="85px"></div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="basket.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="./AboutUsPage.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#!" id="account"></a></li>
+                <li><a href="#!" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+        <img src="data:image/png;base64,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" class="cart-icon">
+        <img src="data:image/png;base64,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" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <!-- HERO SLIDESHOW -->
+    <div class="hero-slideshow">
+        <div class="slide active">
+            <div class="slide-bg" style="background-image: url('photoebi_buxari/fireplace.jpg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">🔥 Premium Collection</span>
+                <h1 class="slide-title">შენი სახლის<br><span>თბილი გარემო</span></h1>
+                <p class="slide-desc">აღმოაჩინე ბუხრების პრემიუმ კოლექცია — სითბო, სტილი და კომფორტი ერთ სივრცეში.</p>
+                <a href="product.html" class="slide-btn">პროდუქტების ნახვა &#8594;</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('photoebi_buxari/buxari8.jpg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">✨ ექსკლუზიური</span>
+                <h1 class="slide-title">ჩაშენებული<br><span>ბუხარი</span></h1>
+                <p class="slide-desc">თანამედროვე დიზაინი და ხარისხი — ბუხარი, რომელიც გარდაქმნის შენს სახლს.</p>
+                <a href="product.html" class="slide-btn">მეტის ნახვა &#8594;</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('photoebi_buxari/buxari3.jpeg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">🏆 საუკეთესო არჩევანი</span>
+                <h1 class="slide-title">კლასიკური<br><span>სტილი</span></h1>
+                <p class="slide-desc">ტრადიციული ესთეტიკა თანამედროვე ტექნოლოგიასთან — სახლის სრულყოფა.</p>
+                <a href="product.html" class="slide-btn">შეარჩიე &#8594;</a>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('photoebi_buxari/buxari10.jpg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">💎 ახალი კოლექცია</span>
+                <h1 class="slide-title">მინიმალისტური<br><span>სიმყუდროვე</span></h1>
+                <p class="slide-desc">სადა, ელეგანტური და ფუნქციური — ბუხარი ყველა ინტერიერისთვის.</p>
+                <a href="product.html" class="slide-btn">დაათვალიერე &#8594;</a>
+            </div>
+        </div>
+
+        <div class="slide-arrow prev" onclick="changeSlide(-1)"><i class="fa fa-chevron-left"></i></div>
+        <div class="slide-arrow next" onclick="changeSlide(1)"><i class="fa fa-chevron-right"></i></div>
+        <div class="slide-indicators">
+            <div class="indicator active" onclick="goToSlide(0)"></div>
+            <div class="indicator" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+            <div class="indicator" onclick="goToSlide(3)"></div>
         </div>
     </div>
-</div> 
 
-<!-- ----- featured categories---- -->
+    <div class="section-divider"></div>
+
+    <!-- CATEGORIES -->
     <div class="categories">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <img src="photoebi_buxari/homemain-removebg-preview.png">
-                </div>          
-                <div class="col-3">
-                    <img src="photoebi_buxari/buxari3.jpeg">
-                </div>
-                <div class="col-3">
-                    <img src="photoebi_buxari/buxari12.jpg">
-        
+        <div class="cat-row">
+            <div class="cat-item reveal reveal-left reveal-delay-1"><img src="photoebi_buxari/homemain-removebg-preview.png"></div>
+            <div class="cat-item reveal reveal-delay-2"><img src="photoebi_buxari/buxari3.jpeg"></div>
+            <div class="cat-item reveal reveal-right reveal-delay-3"><img src="photoebi_buxari/buxari12.jpg"></div>
         </div>
     </div>
+
+    <div class="section-divider"></div>
+
+    <!-- FEATURED PRODUCTS -->
+    <div class="products-section">
+        <h2 class="section-title reveal">Featured <span>Products</span></h2>
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi_buxari/buxari1.jpg"><div class="product-card-body"><h4>კლასიკური ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi_buxari/buxari2.jpeg"><div class="product-card-body"><h4>კლასიკური ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi_buxari/buxari3.jpeg"><div class="product-card-body"><h4>კლასიკური ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi_buxari/buxari4.jpeg"><div class="product-card-body"><h4>კლასიკური ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+        </div>
+
+        <h2 class="section-title reveal">Latest <span>Products</span></h2>
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi_buxari/buxari5.jpeg"><div class="product-card-body"><h4>პრემიუმ ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi_buxari/buxari6.jpeg"><div class="product-card-body"><h4>პრემიუმ ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi_buxari/buxari7.jpg"><div class="product-card-body"><h4>პრემიუმ ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi_buxari/buxari9.jpg"><div class="product-card-body"><h4>პრემიუმ ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+        </div>
+
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi_buxari/buxari10.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi_buxari/buxari11.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi_buxari/buxari12.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi_buxari/buxari8.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- OFFER -->
+    <div class="offer">
+        <div class="offer-inner">
+            <img src="photoebi_buxari/buxari8.jpg" class="offer-img reveal reveal-left">
+            <div class="offer-text reveal reveal-right">
+                <p>ექსკლუზიურად ხელმისაწვდომია Fireplace-ზე</p>
+                <h1>ჩაშენებული ბუხარი</h1>
+                <small>შენი სახლის საუკეთესო ვერსია — ბუხარი, რომელიც აღჭურვილია ყველანაირი ინვენტარით.</small>
+                <a href="./AboutUsPage.html" class="btn">მოგვწერეთ შესაძენად &#8594;</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- TESTIMONIALS -->
+    <div class="testimonial">
+        <h2 class="section-title reveal">მომხმარებელთა <span>გამოხმაურება</span></h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal reveal-delay-1">
+                <i class="fa fa-quote-left"></i>
+                <p>„ასეთი მყუდრო და თბილი ატმოსფერო ჩემს სახლში არასდროს ყოფილა! ბუხარი იდეალურად ერგო ინტერიერს."</p>
+                <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div>
+                <img src="/assets/user-1-B31L2qQA.png"><h3>ნინო იოსელიანი</h3>
+            </div>
+            <div class="testimonial-card reveal reveal-delay-2">
+                <i class="fa fa-quote-left"></i>
+                <p>„დიდი ხნის ძიების შემდეგ, აქ ვიპოვე ზუსტად ისეთი ბუხარი, როგორსაც ვეძებდი — თანამედროვე დიზაინით."</p>
+                <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div>
+                <img src="/assets/user-2-BT_SlN9Q.png"><h3>გიორგი ლოლაძე</h3>
+            </div>
+            <div class="testimonial-card reveal reveal-delay-3">
+                <i class="fa fa-quote-left"></i>
+                <p>„ბიოეთანოლის ბუხარი შევიძინე და უსაყვარლესი დეტალია ჩემს სტუდიო ბინაში. სითბოსაც იძლევა და ინტერიერსაც ალამაზებს."</p>
+                <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div>
+                <img src="/assets/user-3-3YT2bLO-.png"><h3>მარიამ კალანდაძე</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Download Our App</h3>
+                <p>Download App For Android And iOS mobile</p>
+                <div class="app-logo">
+                    <img src="/assets/play-store-B2v87PDn.png">
+                    <img src="/assets/app-store-DMv1Hmwc.png">
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>🔥 Fireplace</h3>
+                <p>სითბო, რომელიც შენს სახლს ეკუთვნის. შეარჩიე იდეალური ბუხარი და შექმენი მყუდრო გარემო შენი ოჯახისთვის.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="./AboutUsPage.html">About</a></li>
+                    <li><a href="./basket.html">Home</a></li>
+                    <li><a href="#">+995 111-555-888</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow us</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/amiran.ardzenadze.764591"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://x.com/"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=7pZ8YMsqIfk"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">CopyRight 2025 — Fireplace Store</p>
+    </div>
+
 </div>
 
-
-<!-- -----featured products ----- -->
- <div class="small-container">
-    <h2 class="title">Featured Products</h2>
-    <div class="row">
-        <div class="col-4">
-            <img src="/assets/aboutus-LbP8WBXv.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari1.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari2.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari3.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div>
-    <h2 class="title">Latest Products</h2>
-    <div class="row">
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari4.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari5.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari6.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari7.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari9.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari10.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari11.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi_buxari/buxari12.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div>             
- </div>
-
-<!-- ------ offer ------ -->
-    <div class="offer">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-2">
-                    <img src="photoebi_buxari/buxari8.jpg" class="offer-img">
-                </div>
-                <div class="col-2">
-                    <p>ექსკლუზიურად ხელმისაწვდომია Fireplace-ზე</p>
-                    <h1>ჩაშენებული ბუხარი</h1>
-                    <small>შენი სახლის საუკეთესო ვერსია ბუხარი რომელიც აღჭურვილია ყველანაირი ინვენტარით</small>
-                    <a href="./AboutUsPage.html" class="btn">მოგვწერეთ შესაძენათ &#8594;</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!-- ------ testimonial ------->
-    <div class="testimonial">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>„ასეთი მყუდრო და თბილი ატმოსფერო ჩემს სახლში არასდროს
-                         ყოფილა! ბუხარი იდეალურად ერგო ინტერიერს და მონტაჟიც ძალიან პროფესიონალურად შესრულდა. 
-                        ნამდვილად გირჩევთ ამ კომპანიას ყველას!"</p>
-                     <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                     </div>
-                     <img src="/assets/user-1-B31L2qQA.png">
-                     <h3>ნინო იოსელიანი</h3>
-                </div>
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>„დიდი ხნის ძიების შემდეგ, აქ ვიპოვე ზუსტად ისეთი ბუხარი, როგორსაც ვეძებდი — თანამედროვე დიზაინით და ხარისხით.
-                         სერვისი სწრაფი, თანამშრომლები კი თავაზიანები და ყურადღებიანები იყვნენ.“</p>
-                     <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                     </div>
-                     <img src="/assets/user-2-BT_SlN9Q.png">
-                     <h3>გიორგი ლოლაძე</h3>
-                </div>
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>„ბიოეთანოლის ბუხარი შევიძინე და 
-                        უსაყვარლესი დეტალია ჩემს სტუდიო ბინაში. სითბოსაც იძლევა და ინტერიერსაც ძალიან
-                         ალამაზებს. დიდი მადლობა მომსახურებისთვის და კონსულტაციისთვის!“</p>
-                     <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                     </div>
-                     <img src="/assets/user-3-3YT2bLO-.png">
-                     <h3>მარიამ კალანდაძე</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-  <!-- --------- brands -------- -->
-  <!-- <div class="brands">
-    <div class="row">
-        <div class="col-5">
-            <img src="images/logo-godrej.png">
-        </div>
-        <div class="col-5">
-            <img src="images/logo-oppo.png">
-        </div>
-        <div class="col-5">
-            <img src="images/logo-coca-cola.png">
-        </div>
-        <div class="col-5">
-            <img src="images/logo-paypal.png">
-        </div>
-        <div class="col-5">
-            <img src="images/logo-philips.png">
-        </div>
-    </div>
- </div> -->
-
-
-
-<!-- -------- footer ----- -->
- <div class="footer">
-    <div class="row">
-        <div class="footer-col-1">
-            <h3>Download Our App</h3>
-            <p>Download App For Android And ios mobile</p>
-            <div class="app-logo">
-                <img src="/assets/play-store-B2v87PDn.png">
-                <img src="/assets/app-store-DMv1Hmwc.png" >
-            </div>
-        </div>
-        <div class="footer-col-2">
-            <img src="">
-            <p>🔥 [Fireplace]🔥  — სითბო, რომელიც შენს სახლს ეკუთვნის
-                შეარჩიე იდეალური ბუხარი და შექმენი მყუდრო გარემო შენი ოჯახისთვის.</p>
-        </div>
-        <div class="footer-col-3">
-            <h3>Useful Links</h3>
-            <ul>
-            <li><a href="./AboutUsPage.html">About</a></li>
-            <li><a href="./basket.html">Home</a></li>
-            <li><a href=""><i class="fa-solid fa-phone">+995 111-555-888</i></a></li> 
-            </ul>
-        </div>
-        <div class="footer-col-3">
-            <h3>Follow us</h3>
-            <ul>
-                <li><a href="https://www.facebook.com/amiran.ardzenadze.764591"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="https://www.youtube.com/watch?v=7pZ8YMsqIfk"><i class="fa-brands fa-youtube"></i></a></li>
-            </ul>
-        </div>
-    </div>
-    <hr>
-    <p class="copyright">CopyRight 2025</p>
- </div>
- <script>
-    var MenuItems = document.getElementById("MenuItems");
-
-    MenuItems.style.maxHeight = "0px"
-
-    function menutoggle (){
-        if (MenuItems.style.maxHeight == "0px")
-        {
-            MenuItems.style.maxHeight = "200px";
-        }
-        else MenuItems.style.maxHeight = "0px";
-        {
-
-        }
-    }
- </script>
+<script src="basket.js"></script>
 </body>
 </html>

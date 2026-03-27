@@ -3,310 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Products Red - store</title>
-    <link rel="stylesheet" href="basketstyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+    <title>All Products - Fireplace Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="product.css">
 </head>
 <body>
 
+<canvas id="starsCanvas"></canvas>
 
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">
-                <img src="photoebi buxari/buxrisfotoJ.webp" width="100px">
-            </div>
-            <nav>
-                <ul id="MenuItems">
-                    <li><a href="basket.html">Home</a></li>
-                    <li><a href="product.html">Products</a></li>
-                    <li><a href="./AboutUsPage.html">About</a></li>
-                    <li><a href="AboutUsPage.html">Contact</a></li>
-                    <li><a href="index.html">Account</a></li>
-                </ul>
-            </nav>
-            <img src="images/cart.png" width="30px" height="30px">
-            <img src="images/menu.png" class="menu-icon" 
-            onclick="menutoggle()">
-            </div>
-    </div> 
- <div class="small-container">
+<div class="page-content">
 
-    <div class="row row-2">
-        <h2>All Products</h2>
+    <!-- NAVBAR -->
+    <div class="navbar-wrap">
+        <div class="logo"><img src="photoebi buxari/buxrisfotoJ.webp" width="85px"></div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="basket.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="./AboutUsPage.html">About</a></li>
+                <li><a href="AboutUsPage.html">Contact</a></li>
+                <li><a href="index.html">Log Out</a></li>
+            </ul>
+        </nav>
+        <img src="images/cart.png" class="cart-icon">
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <!-- HERO SLIDESHOW -->
+    <div class="hero-slideshow">
+        <div class="slide active">
+            <div class="slide-bg" style="background-image: url('photoebi buxari/buxari1.jpg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">🔥 კოლექცია 2025</span>
+                <h1 class="slide-title">ყველა <span>პროდუქტი</span></h1>
+                <p class="slide-desc">აღმოაჩინე ჩვენი სრული კოლექცია — ბუხრები ყველა სტილისა და ზომის.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('photoebi buxari/buxari6.jpeg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">✨ პრემიუმ ხარისხი</span>
+                <h1 class="slide-title">დიზაინი <span>& სტილი</span></h1>
+                <p class="slide-desc">თითოეული ბუხარი შექმნილია სრულყოფილებისთვის — ინტერიერისა და ფუნქციონალობის ჰარმონია.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('photoebi buxari/buxari9.jpg')"></div>
+            <div class="slide-content">
+                <span class="slide-tag">💎 ექსკლუზიური</span>
+                <h1 class="slide-title">სითბო <span>& სიმყუდროვე</span></h1>
+                <p class="slide-desc">შეარჩიე შენი სახლისთვის სრულყოფილი ბუხარი ჩვენი ფართო ასორტიმენტიდან.</p>
+            </div>
+        </div>
+
+        <div class="slide-arrow prev" onclick="changeSlide(-1)"><i class="fa fa-chevron-left"></i></div>
+        <div class="slide-arrow next" onclick="changeSlide(1)"><i class="fa fa-chevron-right"></i></div>
+        <div class="slide-indicators">
+            <div class="indicator active" onclick="goToSlide(0)"></div>
+            <div class="indicator" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+        </div>
+    </div>
+
+    <!-- PRODUCTS HEADER -->
+    <div class="products-header-bar">
+        <h2>ყველა <span>პროდუქტი</span></h2>
         <select>
-            <option>Default Shorting</option>
-            <option>Short by price</option>
-            <option>Short by popularity</option>
-            <option>Short by rating</option>
-            <option>Short by sale</option>
+            <option>Default Sorting</option>
+            <option>Sort by price</option>
+            <option>Sort by popularity</option>
+            <option>Sort by rating</option>
+            <option>Sort by sale</option>
         </select>
     </div>
 
-    <div class="row">
-        <div class="col-4">
-            <img src="photoebi buxari/buxari1.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
+    <!-- PRODUCTS GRID -->
+    <div class="products-section">
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi buxari/buxari1.jpg"><div class="product-card-body"><h4>კლასიკური ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi buxari/buxari2.jpeg"><div class="product-card-body"><h4>კლასიკური ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi buxari/buxari3.jpeg"><div class="product-card-body"><h4>კლასიკური ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi buxari/buxari4.jpeg"><div class="product-card-body"><h4>კლასიკური ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
         </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari2.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi buxari/buxari5.jpeg"><div class="product-card-body"><h4>პრემიუმ ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi buxari/fireplace13.jpg"><div class="product-card-body"><h4>პრემიუმ ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi buxari/buxari6.jpeg"><div class="product-card-body"><h4>პრემიუმ ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi buxari/buxari2.jpeg"><div class="product-card-body"><h4>პრემიუმ ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
         </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari3.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi buxari/buxari7.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi buxari/buxari8.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi buxari/buxari9.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi buxari/buxari10.jpg"><div class="product-card-body"><h4>ექსკლუზიური ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
         </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari4.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
+        <div class="products-row">
+            <div class="product-card reveal reveal-delay-1"><img src="photoebi buxari/buxari11.jpg"><div class="product-card-body"><h4>სპეციალური ბუხარი I</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-2"><img src="photoebi buxari/buxari12.jpg"><div class="product-card-body"><h4>სპეციალური ბუხარი II</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-3"><img src="photoebi buxari/buxari12.jpg"><div class="product-card-body"><h4>სპეციალური ბუხარი III</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div><p>$50.00</p></div></div>
+            <div class="product-card reveal reveal-delay-4"><img src="photoebi buxari/buxari12.jpg"><div class="product-card-body"><h4>სპეციალური ბუხარი IV</h4><div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><p>$50.00</p></div></div>
         </div>
     </div>
-    </div> 
-    <div class="row">
-        <div class="col-4">
-            <img src="photoebi buxari/buxari5.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Download Our App</h3>
+                <p>Download App For Android And iOS</p>
+                <div class="app-logo"><img src="images/play-store.png"><img src="images/app-store.png"></div>
             </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/fireplace13.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+            <div class="footer-col">
+                <h3>🔥 Fireplace</h3>
+                <p>სითბო, რომელიც შენს სახლს ეკუთვნის. შეარჩიე იდეალური ბუხარი.</p>
             </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari6.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+            <div class="footer-col">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="./AboutUsPage.html">About</a></li>
+                    <li><a href="./basket.html">Home</a></li>
+                    <li><a href="#">+995 111-555-888</a></li>
+                </ul>
             </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari2.jpeg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
+            <div class="footer-col">
+                <h3>გამოგვყევი</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/amiran.ardzenadze.764591"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://x.com/"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=7pZ8YMsqIfk"><i class="fa-brands fa-youtube"></i> YouTube</a></li>
+                </ul>
             </div>
-            <p>$50.00</p>
         </div>
+        <hr>
+        <p class="copyright">CopyRight 2025 — Fireplace Store</p>
     </div>
-    <h2 class="title"></h2>
-    <div class="row">
-        <div class="col-4">
-            <img src="photoebi buxari/buxari7.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari8.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari9.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari10.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <img src="photoebi buxari/buxari11.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari12.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari12.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="photoebi buxari/buxari12.jpg" alt="">
-            <h4>Red Printed T-shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div> 
- </div> 
-<!-- -------- footer ----- -->
- <div class="footer">
-    <div class="row">
-        <div class="footer-col-1">
-            <h3>Download Our App</h3>
-            <p>Download App For Android And ios mobile</p>
-            <div class="app-logo">
-                <img src="images/play-store.png">
-                <img src="images/app-store.png" >
 
-            </div>
-        </div>
-        <div class="footer-col-2">
-            <img src="photoebi buxari/buxrisfotoJ.webp">
-            <p>🔥 [Fireplace]🔥  — სითბო, რომელიც შენს სახლს ეკუთვნის
-                შეარჩიე იდეალური ბუხარი და შექმენი მყუდრო გარემო შენი ოჯახისთვის.</p>
-        </div>
-        <div class="footer-col-3">
-            <h3>Useful Links</h3>
-            <ul>
-                <li><a href="./AboutUsPage.html">Home</a></li>
-                <li><a href="./basket.html">About</a></li>
-                <li><a href=""><i class="fa-solid fa-phone">+995 111-555-888</i></a></li>
-            </ul>
-        </div>
-        <div class="footer-col-3">
-            <h3>გამოგვყევი</h3>
-            <ul>
-                <li><a href="https://www.facebook.com/amiran.ardzenadze.764591"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="https://www.youtube.com/watch?v=7pZ8YMsqIfk"><i class="fa-brands fa-youtube"></i></a></li>
-            </ul>
-        </div>
-    </div>
-    <hr>
-    <p class="copyright">CopyRight 2025</p>
- </div>
- <script>
-    var MenuItems = document.getElementById("MenuItems");
+</div>
 
-    MenuItems.style.maxHeight = "0px"
-
-    function menutoggle (){
-        if (MenuItems.style.maxHeight == "0px")
-        {
-            MemaxHeightnuItems.style.maxHeight = "200px";
-        }
-        else MemaxHeightnuItems.style.maxHeight = "0px";
-        {
-
-        }
-    }
- </script>
+<script src="product.js"></script>
 </body>
 </html>
