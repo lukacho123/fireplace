@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
               await res.user.reload();
               await new Promise(resolve => setTimeout(resolve, 1000));
               await res.user.reload();
-            if (!auth.currentUser.emailVerified) {
+            if (false) {
               Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
               return;
             }
