@@ -5,29 +5,32 @@ exports.handler = async function(event) {
 
   try {
     const { message } = JSON.parse(event.body);
-    const apiKey = process.env.GEMINI_API_KEY;
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent?key=${apiKey}`, {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "HTTP-Referer": "https://peaceful-gingersnap-410c29.netlify.app",
+        "X-Title": "Fireplace Assistant"
+      },
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად. კითხვა: " + message }]
-        }]
+        model: "meta-llama/llama-3.2-3b-instruct:free",
+        messages: [
+          {
+            role: "system",
+            content: "შენ ხარ Fireplace-ის მომხმარებელთა მხარდაჭერის ასისტენტი. პასუხობ ქართულად. ეხმარები მომხმარებლებს ბუხრებთან, გათბობასთან და სახლის კომფორტთან დაკავშირებულ კითხვებზე."
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ]
       })
     });
 
     const data = await response.json();
-    
-    if (!data.candidates || !data.candidates[0]) {
-      return {
-        statusCode: 200,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reply: "შეცდომა მოხდა: " + JSON.stringify(data) })
-      };
-    }
-
-    const reply = data.candidates[0].content.parts[0].text;
+    const reply = data.choices[0].message.content;
 
     return {
       statusCode: 200,
@@ -38,7 +41,7 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ reply: "Error: " + e.message })
+      body: JSON.stringify({ reply: "შეცდომა: " + e.message })
     };
   }
 };
