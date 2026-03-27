@@ -15,7 +15,7 @@ exports.handler = async function(event) {
         "X-Title": "Fireplace Assistant"
       },
       body: JSON.stringify({
-        model: "qwen/qwen-2.5-7b-instruct:free",
+        model: "liquid/lfm-2.5-1.2b-instruct:free",
         messages: [
           { role: "system", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად." },
           { role: "user", content: message }
