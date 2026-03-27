@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩემი ანგარიში - Fireplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+
+<canvas id="starsCanvas"></canvas>
+
+<div class="page-content">
+
+    <!-- NAVBAR -->
+    <div class="navbar-wrap">
+        <div class="logo"><img src="photoebi_buxari/buxrisfotoJ.webp" width="85px"></div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="basket.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="./AboutUsPage.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html" id="account" id="navAccountName"></a></li>
+                <li><a href="#!" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+        <img src="images/cart.png" class="cart-icon">
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <!-- ACCOUNT HEADER -->
+    <div class="account-header">
+        <div class="avatar">
+            <span id="avatarInitial">U</span>
+        </div>
+        <div class="account-header-info">
+            <h1 id="headerName">მომხმარებელი</h1>
+            <p id="headerEmail">user@email.com</p>
+            <span class="member-badge">🔥 Fireplace Member</span>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="account-main">
+
+        <!-- SIDEBAR -->
+        <div class="account-sidebar">
+            <div class="sidebar-item active" onclick="showPanel('panel-profile')">
+                <i class="fa-solid fa-user"></i>
+                პროფილის ინფო
+            </div>
+            <div class="sidebar-item" onclick="showPanel('panel-password')">
+                <i class="fa-solid fa-lock"></i>
+                პაროლის შეცვლა
+            </div>
+            <div class="sidebar-item" onclick="showPanel('panel-orders')">
+                <i class="fa-solid fa-box"></i>
+                შეკვეთების ისტორია
+            </div>
+            <div class="sidebar-item" onclick="showPanel('panel-favorites')">
+                <i class="fa-solid fa-heart"></i>
+                საყვარელი პროდუქტები
+            </div>
+            <div class="sidebar-logout" onclick="document.getElementById('logout-btn').click()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                გასვლა
+            </div>
+        </div>
+
+        <!-- PANELS -->
+        <div class="account-panels">
+
+            <!-- PROFILE -->
+            <div class="account-panel active" id="panel-profile">
+                <h2 class="panel-title">
+                    <i class="fa-solid fa-user" style="color:#ff7a1e;font-size:1.1rem"></i>
+                    პროფილის <span>ინფო</span>
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>სახელი</label>
+                        <input type="text" id="profileName" placeholder="შენი სახელი">
+                    </div>
+                    <div class="form-group">
+                        <label>ტელეფონი</label>
+                        <input type="tel" id="profilePhone" placeholder="+995 5XX XXX XXX">
+                    </div>
+                    <div class="form-group full">
+                        <label>ელ-ფოსტა</label>
+                        <input type="email" id="profileEmail" placeholder="email@example.com" disabled>
+                    </div>
+                </div>
+                <button class="save-btn" onclick="saveProfile()">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    შენახვა
+                </button>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="account-panel" id="panel-password">
+                <h2 class="panel-title">
+                    <i class="fa-solid fa-lock" style="color:#ff7a1e;font-size:1.1rem"></i>
+                    პაროლის <span>შეცვლა</span>
+                </h2>
+                <div class="password-info">
+                    <i class="fa-solid fa-circle-info"></i>
+                    პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო
+                </div>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>მიმდინარე პაროლი</label>
+                        <input type="password" id="currentPassword" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>ახალი პაროლი</label>
+                        <input type="password" id="newPassword" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>გაიმეორე პაროლი</label>
+                        <input type="password" id="confirmPassword" placeholder="••••••••">
+                    </div>
+                </div>
+                <button class="save-btn" onclick="savePassword()">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    პაროლის შეცვლა
+                </button>
+            </div>
+
+            <!-- ORDERS -->
+            <div class="account-panel" id="panel-orders">
+                <h2 class="panel-title">
+                    <i class="fa-solid fa-box" style="color:#ff7a1e;font-size:1.1rem"></i>
+                    შეკვეთების <span>ისტორია</span>
+                </h2>
+
+                <!-- Sample orders - replace with real data -->
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-id">#FP-2024-001</div>
+                            <div class="order-date">15 მარტი, 2024</div>
+                        </div>
+                        <span class="order-status">მიწოდებულია</span>
+                    </div>
+                    <div style="color:rgba(255,255,255,0.55);font-size:0.85rem;">
+                        კლასიკური ბუხარი II — <span style="color:#ff7a1e;font-weight:600;">$50.00</span>
+                    </div>
+                </div>
+
+                <div class="orders-empty" id="ordersEmpty" style="display:none;">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>შეკვეთები ჯერ არ გაქვს</p>
+                </div>
+            </div>
+
+            <!-- FAVORITES -->
+            <div class="account-panel" id="panel-favorites">
+                <h2 class="panel-title">
+                    <i class="fa-solid fa-heart" style="color:#ff7a1e;font-size:1.1rem"></i>
+                    საყვარელი <span>პროდუქტები</span>
+                </h2>
+                <div class="favorites-grid" id="favoritesGrid">
+                    <!-- filled by JS -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <i class="fa-solid fa-check"></i>
+    <span class="toast-msg"></span>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+<script src="account.js"></script>
+</body>
+</html>

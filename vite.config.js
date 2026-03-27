@@ -14,6 +14,7 @@ export default defineConfig({
         cart:           resolve(__dirname, 'cart.html'),
         firebase:       resolve(__dirname, 'firebase.html'),
         productDetails: resolve(__dirname, 'product-details.html'),
+        account:        resolve(__dirname, 'account.html'),
       }
     }
   }
