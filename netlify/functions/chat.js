@@ -4,24 +4,21 @@ exports.handler = async function(event) {
   }
 
   const { message } = JSON.parse(event.body);
+  const apiKey = process.env.GEMINI_API_KEY;
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.CLAUDE_API_KEY,
-      "anthropic-version": "2023-06-01"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 1000,
-      system: "შენ ხარ Fireplace-ის მომხმარებელთა მხარდაჭერის ასისტენტი. პასუხობ ქართულად. ეხმარები მომხმარებლებს ბუხრებთან, გათბობასთან და სახლის კომფორტთან დაკავშირებულ კითხვებზე. თუ კითხვა სცდება შენს სფეროს, გთხოვ მომხმარებელს დაუკავშირდეს ადამიანს: support@fireplace.ge",
-      messages: [{ role: "user", content: message }]
+      system_instruction: {
+        parts: [{ text: "შენ ხარ Fireplace-ის მომხმარებელთა მხარდაჭერის ასისტენტი. პასუხობ ქართულად. ეხმარები მომხმარებლებს ბუხრებთან, გათბობასთან და სახლის კომფორტთან დაკავშირებულ კითხვებზე." }]
+      },
+      contents: [{ parts: [{ text: message }] }]
     })
   });
 
   const data = await response.json();
-  const reply = data.content[0].text;
+  const reply = data.candidates[0].content.parts[0].text;
 
   return {
     statusCode: 200,
