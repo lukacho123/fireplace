@@ -87,13 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
         signInWithEmailAndPassword(auth, email, password)
           .then(async res => {
           if (res?.user) {
-              await res.user.reload();
-              const freshUser = auth.currentUser;
-              if (!freshUser.emailVerified) {
-                Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
-                return;
-              }
-              window.location = '/basket.html';
+            await res.user.reload();
+            if (!res.user.emailVerified) {
+              Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
+              return;
+            }
+            window.location = '/basket.html';
             };
           })
           .catch(error => {
