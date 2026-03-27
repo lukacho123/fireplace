@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (res?.user) {
             // localStorage.setItem("user", JSON.stringify({ name, email, password }));
 
-            sendEmailVerification(res?.user);
+            sendEmailVerification(res?.user, { url: "https://fireplaceluka.netlify.app/verify.html", handleCodeInApp: false });
             updateProfile(res?.user, {displayName: name}).then(() => {
                 Toast.fire({ icon: "success", title: "✅ გაიარე ვერიფიკაცია მაილზე და შემდეგ შედი!" });
             }).catch(error => {
