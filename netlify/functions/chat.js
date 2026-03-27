@@ -17,20 +17,14 @@ exports.handler = async function(event) {
       body: JSON.stringify({
         model: "meta-llama/llama-3.2-3b-instruct:free",
         messages: [
-          {
-            role: "system",
-            content: "შენ ხარ Fireplace-ის მომხმარებელთა მხარდაჭერის ასისტენტი. პასუხობ ქართულად."
-          },
-          {
-            role: "user",
-            content: message
-          }
+          { role: "system", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად." },
+          { role: "user", content: message }
         ]
       })
     });
 
     const data = await response.json();
-    const reply = data?.choices?.[0]?.message?.content || JSON.stringify(data);
+    const reply = JSON.stringify(data);
 
     return {
       statusCode: 200,
