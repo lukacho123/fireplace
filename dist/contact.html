@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>კონტაქტი - Fireplace</title>
+  <link rel="stylesheet" href="/contact.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="header-left">
+        <div class="bot-avatar">🔥</div>
+        <div>
+          <div class="bot-name">Fireplace Assistant</div>
+          <div class="bot-status">● ონლაინ</div>
+        </div>
+      </div>
+      <a href="/basket.html" class="back-btn">← მთავარი</a>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="message bot">
+        <div class="avatar">🔥</div>
+        <div class="bubble">გამარჯობა! მე ვარ Fireplace-ის ასისტენტი. როგორ შემიძლია დაგეხმარო? 😊</div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="user-input" placeholder="დაწერე შეკითხვა..." />
+      <button id="send-btn" onclick="sendMessage()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script src="/contact.js"></script>
+</body>
+</html>
