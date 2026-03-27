@@ -17,14 +17,13 @@ exports.handler = async function(event) {
       body: JSON.stringify({
         model: "google/gemma-3n-e4b-it:free",
         messages: [
-          { role: "system", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად." },
-          { role: "user", content: message }
+          { role: "user", content: "შენ ხარ Fireplace-ის ასისტენტი. პასუხობ ქართულად. კითხვა: " + message }
         ]
       })
     });
 
     const data = await response.json();
-    const reply = JSON.stringify(data);
+    const reply = data?.choices?.[0]?.message?.content || JSON.stringify(data);
 
     return {
       statusCode: 200,
