@@ -85,16 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       } else {
         signInWithEmailAndPassword(auth, email, password)
-          .then(res => {
+          .then(async res => {
           if (res?.user) {
-              res.user.reload().then(() => {
-                if (!res.user.emailVerified) {
-                  Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
-                  return;
-                }
-                window.location = '/basket.html';
-              });
-              // localStorage.setItem("user", JSON.stringify({ name: res?.user?.displayName, email, password }));
+              await res.user.reload();
+              const freshUser = auth.currentUser;
+              if (!freshUser.emailVerified) {
+                Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
+                return;
+              }
+              window.location = '/basket.html';
             };
           })
           .catch(error => {
