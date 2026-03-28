@@ -353,3 +353,29 @@ body {
         font-size: 1rem !important;
     }
 }
+
+@media (max-width: 768px) {
+    .navbar-wrap nav {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 200;
+    }
+    .navbar-wrap nav ul {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden;
+        background: rgba(2,8,20,0.98);
+        padding: 0 20px;
+        transition: max-height 0.3s ease;
+        border-bottom: 1px solid rgba(255,122,30,0.15);
+        gap: 0 !important;
+    }
+    .navbar-wrap nav ul li {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .navbar-wrap nav ul li:last-child { border-bottom: none; }
+}
