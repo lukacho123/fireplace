@@ -1,9 +1,16 @@
 // Mobile menu
 var MenuItems = document.getElementById("MenuItems");
-MenuItems.style.maxHeight = "0px";
+if (MenuItems) MenuItems.style.maxHeight = "0px";
 
 function menutoggle() {
-    MenuItems.style.maxHeight = MenuItems.style.maxHeight === "0px" ? "200px" : "0px";
+    if (!MenuItems) return;
+    if (MenuItems.style.maxHeight === "0px" || MenuItems.style.maxHeight === "") {
+        MenuItems.style.maxHeight = "400px";
+        MenuItems.style.display = "flex";
+    } else {
+        MenuItems.style.maxHeight = "0px";
+        setTimeout(() => { MenuItems.style.display = "none"; }, 300);
+    }
 }
 
 // FIXED STARS
@@ -65,11 +72,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             revealObserver.unobserve(entry.target);
         }
     });
-}, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-});
-
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // SLIDESHOW
@@ -92,5 +95,4 @@ function resetAutoPlay() {
     clearInterval(autoPlayTimer);
     autoPlayTimer = setInterval(() => changeSlide(1), 5500);
 }
-
 resetAutoPlay();
