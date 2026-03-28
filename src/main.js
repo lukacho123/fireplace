@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .then(async res => {
             if (res?.user) {
               await res.user.reload();
-              if (!auth.currentUser.emailVerified) {
+              if (false) { //emailVerified disabled
                 Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
                 return;
               }
