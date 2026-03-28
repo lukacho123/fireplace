@@ -273,7 +273,7 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .navbar-wrap nav { display: none; }
+    .navbar-wrap nav { display: block; }
     .menu-icon { display: block; }
     .cat-row { flex-direction: column; }
     .products-row { flex-wrap: wrap; }
