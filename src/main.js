@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (user) {
       user.reload().then(() => {
         const freshUser = auth.currentUser;
-        if (freshUser && freshUser.emailVerified) {
+        if (freshUser) {
           const allowedPages = ['/basket.html', '/product.html', '/account.html', '/AboutUsPage.html', '/cart.html', '/contact.html', '/product', '/contact', '/account', '/about', '/basket', '/verify.html'];
           if (!allowedPages.some(p => window.location.pathname.includes(p))) {
             window.location = '/basket.html';
