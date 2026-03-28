@@ -1,30 +1,20 @@
 import './style.css'
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut, sendEmailVerification } from "firebase/auth";
 import Swal from 'sweetalert2'
 
-// enc credentials
-const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
-const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID;
-const messagingSenderId = import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID;
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey,
-  authDomain: `${projectId}.firebaseapp.com`,
-  projectId,
-  storageBucket: `${projectId}.firebasestorage.app`,
-  messagingSenderId,
-  appId: `1:${messagingSenderId}:web:f8a69851f96edc87aae8fe`,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: "fir-9fb39.firebaseapp.com",
+  projectId: "fir-9fb39",
+  storageBucket: "fir-9fb39.firebasestorage.app",
+  messagingSenderId: "591389234395",
+  appId: "1:591389234395:web:f8a69851f96edc87aae8fe"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-//submit button
 
-// Alert config
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -37,106 +27,60 @@ const Toast = Swal.mixin({
   }
 });
 
-//another script
 document.addEventListener("DOMContentLoaded", function () {
   let isSignUp = true;
 
-  // Registration
   const form = document.querySelector("form");
   if (form) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-    
-      //inputs
-      const name = document.getElementById("name").value;
+      const name = document.getElementById("name")?.value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
       if ((isSignUp && !name && !email && !password) || (!isSignUp && !email && !password)) {
-        Toast.fire({
-          icon: "warning",
-          title: "გთხოვ შეავსე ყველა ველი"
-        });
+        Toast.fire({ icon: "warning", title: "გთხოვ შეავსე ყველა ველი" });
         return;
       }
-    
+
       if (isSignUp) {
         createUserWithEmailAndPassword(auth, email, password)
-        .then((res) => {
-          if (res?.user) {
-            // localStorage.setItem("user", JSON.stringify({ name, email, password }));
-
-            sendEmailVerification(res?.user, { url: "https://fireplaceluka.netlify.app/verify.html", handleCodeInApp: false });
-            updateProfile(res?.user, {displayName: name}).then(() => {
+          .then((res) => {
+            if (res?.user) {
+              sendEmailVerification(res.user, { url: "https://fireplaceluka.netlify.app/verify.html", handleCodeInApp: false });
+              updateProfile(res.user, { displayName: name }).then(() => {
                 Toast.fire({ icon: "success", title: "✅ გაიარე ვერიფიკაცია მაილზე და შემდეგ შედი!" });
-            }).catch(error => {
-              Toast.fire({
-                icon: "error",
-                title: error.message
+              }).catch(error => {
+                Toast.fire({ icon: "error", title: error.message });
               });
-            })
-          }
-        })
-        .catch((error) => {
-          Toast.fire({
-            icon: "error",
-            title: error.message
+            }
+          })
+          .catch((error) => {
+            Toast.fire({ icon: "error", title: error.message });
           });
-        });
       } else {
         signInWithEmailAndPassword(auth, email, password)
           .then(async res => {
-          if (res?.user) {
-            
+            if (res?.user) {
               await res.user.reload();
-              await new Promise(resolve => setTimeout(resolve, 1000));
-              await res.user.reload();
-            if (false) {
-              Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
-              return;
+              if (!auth.currentUser.emailVerified) {
+                Toast.fire({ icon: 'error', title: 'გთხოვ ჯერ დაადასტურე შენი email' });
+                return;
+              }
+              window.location = '/basket.html';
             }
-            window.location = '/basket.html';
-            };
           })
           .catch(error => {
             console.log(error);
-            Toast.fire({
-              icon: "error",
-              title: error.message
-            });
+            Toast.fire({ icon: "error", title: error.message });
           });
       }
     });
   }
 
-  // Sign in if user exists in localStorage
-  function autoSignIn() {
-    const savedUser = JSON.parse(localStorage.getItem("user"));
-    if (savedUser) {
-      Toast.fire({
-        icon: "warning",
-        title: 'მიმდინარეობს ავტორიზაცია...'
-      });
-
-    signInWithEmailAndPassword(auth, savedUser?.email, savedUser?.password)
-      .then(res => {
-        if (res?.user) window.location = '/basket.html';
-      })
-      .catch(error => {
-        console.log(error);
-        Toast.fire({
-          icon: "error",
-          title: error.message
-        });
-      });
-    }
-  }
-  // autoSignIn();
-
-  // Logout
   const logoutBtn = document.querySelector('#logout-btn');
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => signOut(auth));
+    logoutBtn.addEventListener('click', () => signOut(auth).then(() => window.location = '/'));
   }
 
   onAuthStateChanged(auth, (user) => {
@@ -145,19 +89,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const freshUser = auth.currentUser;
         if (freshUser && freshUser.emailVerified) {
           const allowedPages = ['/basket.html', '/product.html', '/account.html', '/AboutUsPage.html', '/cart.html', '/contact.html', '/product', '/contact', '/account', '/about', '/basket', '/verify.html'];
-          if (!allowedPages.includes(window.location.pathname)) {
+          if (!allowedPages.some(p => window.location.pathname.includes(p))) {
             window.location = '/basket.html';
           }
           const account = document.querySelector('#account');
           if (account) account.innerText = freshUser.displayName || '';
+          window.currentUser = freshUser;
         }
       });
     } else {
-      if (window.location.pathname !== '/') {
+      if (window.location.pathname !== '/' && !window.location.pathname.includes('verify')) {
         window.location = '/';
       }
     }
-  })
+  });
 
   const signupBtn = document.getElementById("signupBtn");
   const signinBtn = document.getElementById("signinBtn");
@@ -165,8 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameContainer = document.getElementById("nameField");
   const inputGroup = document.querySelector(".input-group");
 
-  // გადართვა Sign In რეჟიმზე
-  if(signinBtn) {
+  if (signinBtn) {
     signinBtn.onclick = () => {
       isSignUp = false;
       nameContainer.style.maxHeight = "0";
@@ -177,11 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // გადართვა Sign Up რეჟიმზე
-  if(signupBtn) {
+  if (signupBtn) {
     signupBtn.onclick = () => {
       if (!isSignUp) {
-        // ჯერ მხოლოდ ფორმის გადართვა
         isSignUp = true;
         nameContainer.style.maxHeight = "60px";
         title.innerHTML = "Sign Up";
